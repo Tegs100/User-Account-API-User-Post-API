@@ -2,9 +2,7 @@ const postModel = require("../model/post.model");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken")
 
-const createPost = async (req, res) => {
-  //const { token } = req.cookies
-  //const { id } = jwt.verify(token, JWT_SECRET)
+const createPost = async (req, res) => {
   const id = req.user
   const body = req.body;
   try {
@@ -63,7 +61,10 @@ const deletePost = async (req, res) => {
       return res.status(404).json({message: "Post not found"})
     }
     if (deletedPost.creatorId.toString() != user){
-      return res.status(403).json({message: "You are not permitted to delete this post"})}
+      return res.status(403).json({message: "You are not permitted to delete this post"});
+}
+await postModel.findByIdAndDelete(id);
+    res.status(200).send({ message: "Post deleted successfully" });
   } catch (error) {
     res.status(400).json({ message: "Cannot delete post" });
   }
