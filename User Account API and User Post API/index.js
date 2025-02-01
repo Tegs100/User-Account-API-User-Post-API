@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 dotenv.config(); //This can also be run as require("dotenv").config(); instead of const dotenv as variable.
-const postRoute = require("./route/user.route");
+const postRoute = require("./route/post.route");
 const userRoute = require("./route/user.route");
 
 const app = express();
